@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javier — Contador Público Independiente | Maracay</title>
+<style>
+  :root{
+    --navy:#0f2740;
+    --navy-2:#17395c;
+    --steel:#1f4e79;
+    --gold:#b8912f;
+    --gold-soft:#d8bc76;
+    --paper:#ffffff;
+    --bg:#f4f6f9;
+    --line:#dde3ea;
+    --text:#22303f;
+    --muted:#5d6b7c;
+    --shadow:0 10px 30px rgba(15,39,64,.08);
+    --shadow-lg:0 20px 50px rgba(15,39,64,.14);
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Georgia','Times New Roman',serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4,.sans{font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;}
+
+  .wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 24px;}
+
+  /* ============ TOP BAR ============ */
+  .topbar{
+    background:var(--navy);
+    color:#c9d6e4;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12.5px;
+    letter-spacing:.04em;
+    padding:9px 0;
+  }
+  .topbar .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;}
+  .topbar strong{color:var(--gold-soft);font-weight:600;}
+
+  /* ============ HEADER ============ */
+  header.main{
+    background:var(--paper);
+    border-bottom:3px solid var(--navy);
+    position:sticky;
+    top:0;
+    z-index:60;
+    box-shadow:0 2px 14px rgba(15,39,64,.06);
+  }
+  .head-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:16px 0;
+    flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+  .monogram{
+    width:52px;height:52px;
+    background:var(--navy);
+    color:var(--gold-soft);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Georgia',serif;
+    font-size:24px;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    flex:none;
+    letter-spacing:.02em;
+  }
+  .brand-txt .name{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:.06em;
+    color:var(--navy);
+    text-transform:uppercase;
+  }
+  .brand-txt .tag{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  nav.main-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  nav.main-nav a{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13.5px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--navy-2);
+    text-decoration:none;
+    padding:9px 14px;
+    border-radius:6px;
+    transition:.18s;
+  }
+  nav.main-nav a:hover{background:#eef2f7;color:var(--navy);}
+
+  .btn{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    letter-spacing:.05em;
+    border:none;
+    cursor:pointer;
+    border-radius:8px;
+    padding:11px 20px;
+    transition:.18s;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    line-height:1;
+  }
+  .btn-primary{background:var(--navy);color:#fff;}
+  .btn-primary:hover{background:var(--navy-2);}
+  .btn-gold{background:var(--gold);color:#fff;}
+  .btn-gold:hover{background:#a37f24;}
+  .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy);}
+  .btn-ghost:hover{background:var(--navy);color:#fff;}
+  .btn-danger{background:#a83232;color:#fff;}
+  .btn-danger:hover{background:#8b2828;}
+  .btn-sm{padding:8px 14px;font-size:12.5px;}
+
+  /* ============ HERO ============ */
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 55%,var(--steel) 100%);
+    color:#fff;
+    padding:86px 0 96px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero:after{
+    content:'';
+    position:absolute;right:-140px;top:-140px;
+    width:520px;height:520px;border-radius:50%;
+    border:1px solid rgba(216,188,118,.22);
+  }
+  .hero:before{
+    content:'';
+    position:absolute;right:-40px;bottom:-220px;
+    width:640px;height:640px;border-radius:50%;
+    border:1px solid rgba(216,188,118,.12);
+  }
+  .hero .wrap{position:relative;z-index:2;}
+  .eyebrow{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold-soft);margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(30px,4.6vw,50px);
+    line-height:1.15;
+    font-weight:700;
+    letter-spacing:-.01em;
+    max-width:820px;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--gold-soft);}
+  .hero p.lead{
+    font-size:17.5px;
+    color:#dbe5ef;
+    max-width:660px;
+    margin-bottom:34px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px;}
+  .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.55);}
+  .hero .btn-ghost:hover{background:#fff;color:var(--navy);border-color:#fff;}
+
+  .hero-facts{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:1px;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .fact{background:rgba(11,31,52,.35);padding:20px 22px;}
+  .fact .k{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold-soft);margin-bottom:6px;
+  }
+  .fact .v{font-size:15px;color:#fff;}
+
+  /* ============ SECTION ============ */
+  section{padding:80px 0;}
+  .sec-head{max-width:720px;margin-bottom:48px;}
+  .sec-head .kicker{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:14px;
+  }
+  .sec-head h2{
+    font-size:clamp(25px,3.2vw,35px);
+    color:var(--navy);
+    font-weight:700;
+    line-height:1.22;
+    margin-bottom:14px;
+    letter-spacing:-.01em;
+  }
+  .sec-head p{color:var(--muted);font-size:16.5px;}
+
+  .rule{width:64px;height:3px;background:var(--gold);margin:0 0 22px;}
+
+  /* ============ SERVICES ============ */
+  .grid-services{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:24px;
+  }
+  .svc{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-top:3px solid var(--navy);
+    border-radius:var(--radius);
+    padding:30px 28px;
+    box-shadow:var(--shadow);
+    display:flex;flex-direction:column;
+    transition:.2s;
+  }
+  .svc:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-top-color:var(--gold);}
+  .svc .icon{
+    font-size:22px;color:var(--gold);margin-bottom:16px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .svc h3{font-size:18px;color:var(--navy);margin-bottom:12px;line-height:1.35;font-weight:700;}
+  .svc p{color:var(--muted);font-size:15px;flex:1;}
+  .svc .note{
+    margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--steel);font-weight:600;
+  }
+
+  /* ============ ABOUT ============ */
+  .about{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .about-card{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--steel) 100%);
+    color:#fff;border-radius:var(--radius);padding:44px 40px;
+    box-shadow:var(--shadow-lg);
+  }
+  .about-card h3{font-size:22px;margin-bottom:16px;color:#fff;}
+  .about-card p{color:#d5e0ec;font-size:15.5px;margin-bottom:14px;}
+  .about-card .sig{
+    font-family:'Georgia',serif;font-size:26px;color:var(--gold-soft);
+    margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2);
+  }
+  .values{list-style:none;}
+  .values li{
+    display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);
+  }
+  .values li:last-child{border-bottom:none;}
+  .values .num{
+    font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;
+    color:var(--gold);font-size:14px;letter-spacing:.1em;flex:none;padding-top:3px;
+  }
+  .values strong{display:block;color:var(--navy);font-size:16px;font-family:'Helvetica Neue',Arial,sans-serif;margin-bottom:3px;}
+  .values span{color:var(--muted);font-size:14.5px;}
+
+  /* ============ CONTACT ============ */
+  .contact{background:var(--navy);color:#fff;}
+  .contact .sec-head h2{color:#fff;}
+  .contact .sec-head p{color:#c2d0de;}
+  .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;}
+  .contact-box{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius);padding:36px;
+  }
+  .contact-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12);}
+  .contact-item:last-child{border-bottom:none;padding-bottom:0;}
+  .contact-item .ic{
+    width:42px;height:42px;flex:none;border-radius:9px;
+    background:rgba(216,188,118,.16);border:1px solid rgba(216,188,118,.4);
+    display:flex;align-items:center;justify-content:center;font-size:17px;
+    color:var(--gold-soft);font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .contact-item .lab{
+    font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:4px;
+  }
+  .contact-item .val{font-size:16.5px;color:#fff;}
+  .contact-item .val a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);}
+  .contact-item .val a:hover{color:var(--gold-soft);}
+  .contact-item .sub{font-size:13px;color:#a9bbcc;margin-top:3px;}
+
+  .hours-box{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius);padding:36px;
+  }
+  .hours-box h3{font-size:19px;margin-bottom:20px;}
+  .hours-row{
+    display:flex;justify-content:space-between;gap:14px;
+    padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);
+    font-size:15px;color:#dbe5ef;
+  }
+  .hours-row:last-of-type{border-bottom:none;}
+  .hours-row .d{font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;letter-spacing:.03em;}
+  .hours-row .h{color:var(--gold-soft);font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:600;}
+  .hours-row.closed .h{color:#8fa3b8;}
+  .hours-note{
+    margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);
+    font-size:14px;color:#b7c6d6;font-style:italic;
+  }
+
+  /* ============ FOOTER ============ */
+  footer.site{
+    background:#0a1d30;color:#8fa3b8;padding:34px 0;
+    font-family:'Helvetica Neue',Arial,sans-serif;font-size:13.5px;
+  }
+  footer.site .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center;}
+  footer.site a{color:var(--gold-soft);text-decoration:none;}
+
+  /* ============ MODAL LOGIN ============ */
+  .overlay{
+    position:fixed;inset:0;background:rgba(8,20,34,.72);
+    display:none;align-items:center;justify-content:center;padding:22px;z-index:200;
+    backdrop-filter:blur(3px);
+  }
+  .overlay.open{display:flex;}
+  .modal{
+    background:#fff;border-radius:16px;width:100%;max-width:420px;
+    padding:38px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35);
+    border-top:4px solid var(--gold);
+  }
+  .modal h3{font-size:21px;color:var(--navy);margin-bottom:6px;}
+  .modal .sub{font-size:14px;color:var(--muted);margin-bottom:26px;}
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--steel);font-weight:600;margin-bottom:7px;
+  }
+  .field input,.field textarea,.field select{
+    width:100%;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:9px;font-size:15px;font-family:'Helvetica Neue',Arial,sans-serif;
+    color:var(--text);background:#fbfcfe;transition:.16s;
+  }
+  .field input:focus,.field textarea:focus,.field select:focus{
+    outline:none;border-color:var(--steel);background:#fff;
+    box-shadow:0 0 0 3px rgba(31,78,121,.1);
+  }
+  .field textarea{resize:vertical;min-height:96px;line-height:1.55;}
+  .msg{font-size:13.5px;padding:11px 14px;border-radius:8px;margin-bottom:16px;display:none;font-family:'Helvetica Neue',Arial,sans-serif;}
+  .msg.err{display:block;background:#fdecec;color:#8b2828;border:1px solid #f4c9c9;}
+  .msg.ok{display:block;background:#eaf7ef;color:#1e6b3d;border:1px solid #c3e6d1;}
+
+  /* ============ ADMIN PANEL ============ */
+  .admin-view{display:none;}
+  .admin-view.active{display:block;}
+  .site-view.hidden{display:none;}
+
+  .admin-top{
+    background:var(--navy);color:#fff;padding:18px 0;
+    border-bottom:3px solid var(--gold);
+  }
+  .admin-top .wrap{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;}
+  .admin-top .who{font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;color:#c9d6e4;}
+  .admin-top .who strong{color:#fff;}
+  .admin-top .who .pill{
+    background:rgba(216,188,118,.18);border:1px solid rgba(216,188,118,.45);
+    color:var(--gold-soft);padding:3px 11px;border-radius:20px;
+    font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;margin-left:10px;
+  }
+  .admin-actions{display:flex;gap:10px;flex-wrap:wrap;}
+
+  .admin-body{padding:44px 0 80px;}
+  .admin-bar{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:20px;flex-wrap:wrap;margin-bottom:28px;
+  }
+  .admin-bar h2{font-size:26px;color:var(--navy);margin-bottom:4px;}
+  .admin-bar p{color:var(--muted);font-size:15px;}
+
+  .adm-list{display:grid;gap:16px;}
+  .adm-item{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--steel);
+    border-radius:12px;padding:22px 24px;box-shadow:var(--shadow);
+    display:flex;justify-content:space-between;gap:22px;align-items:flex-start;flex-wrap:wrap;
+  }
+  .adm-item .info{flex:1;min-width:240px;}
+  .adm-item h4{font-size:17px;color:var(--navy);margin-bottom:7px;}
+  .adm-item p{color:var(--muted);font-size:14.5px;}
+  .adm-item .meta{
+    font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--steel);
+    margin-top:9px;font-weight:600;
+  }
+  .adm-item .ctrl{display:flex;gap:9px;flex:none;}
+  .empty-state{
+    background:#fff;border:1px dashed var(--line);border-radius:12px;
+    padding:52px 30px;text-align:center;color:var(--muted);
+  }
+  .empty-state h4{color:var(--navy);font-size:18px;margin-bottom:8px;}
+
+  /* ============ TOAST ============ */
+  #toast{
+    position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(24px);
+    background:var(--navy);color:#fff;padding:14px 24px;border-radius:10px;
+    font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;
+    box-shadow:0 14px 36px rgba(0,0,0,.3);opacity:0;pointer-events:none;
+    transition:.28s;z-index:300;border-left:4px solid var(--gold);max-width:90vw;
+  }
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:900px){
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:34px;}
+    .hero{padding:64px 0 72px;}
+    section{padding:60px 0;}
+  }
+  @media (max-width:640px){
+    .head-inner{flex-direction:column;align-items:flex-start;}
+    nav.main-nav{width:100%;}
+    nav.main-nav a{padding:8px 10px;font-size:12.5px;}
+    .hero-facts{grid-template-columns:1fr 1fr;}
+    .admin-bar{flex-direction:column;align-items:stretch;}
+    .adm-item{flex-direction:column;}
+    .adm-item .ctrl{width:100%;}
+    .adm-item .ctrl .btn{flex:1;justify-content:center;}
+  }
+  @media print{
+    .topbar,header.main,.hero-actions,.admin-top,.admin-actions,#toast{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= VISTA PÚBLICA (CLIENTES) ================= -->
+<div class="site-view" id="siteView">
+
+  <div class="topbar">
+    <div class="wrap">
+      <div>Contador Público Independiente · <strong>Maracay, Estado Aragua</strong></div>
+      <div>Teléfono: <strong>0414-4576458</strong></div>
+    </div>
+  </div>
+
+  <header class="main">
+    <div class="wrap head-inner">
+      <a class="brand" href="#inicio">
+        <div class="monogram">J</div>
+        <div class="brand-txt">
+          <div class="name">Javier</div>
+          <div class="tag">Contador Público</div>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#despacho">El Despacho</a>
+        <a href="#contacto">Contacto</a>
+        <button class="btn btn-ghost btn-sm" onclick="openLogin()">Acceso Contador</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div class="eyebrow">Asesoría Contable · Fiscal · Laboral</div>
+      <h1>Servicios contables profesionales para <em>personas y empresas</em> en Maracay</h1>
+      <p class="lead">
+        Contabilidad ordenada, cumplimiento fiscal al día y asesoría permanente para la toma de
+        decisiones. Un servicio personalizado, con atención directa y confidencialidad garantizada.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-gold">Solicitar asesoría</a>
+        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+      </div>
+      <div class="hero-facts">
+        <div class="fact"><div class="k">Atención</div><div class="v">Directa con el contador</div></div>
+        <div class="fact"><div class="k">Modalidad</div><div class="v">Presencial y a distancia</div></div>
+        <div class="fact"><div class="k">Horario</div><div class="v">7:00 a.m. – 5:00 p.m.</div></div>
+        <div class="fact"><div class="k">Cobertura</div><div class="v">Maracay y toda Venezuela</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">Nuestros Servicios</div>
+        <div class="rule"></div>
+        <h2>Lo que ofrecemos</h2>
+        <p>Soluciones contables, fiscales y administrativas adaptadas a las necesidades de cada cliente. Toda la asesoría se brinda de forma personalizada.</p>
+      </div>
+      <div class="grid-services" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <section class="about" id="despacho">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Un servicio a la medida de su negocio</h3>
+          <p>Cada cliente recibe atención directa con el contador, sin intermediarios. Se revisan sus necesidades particulares y se define un plan de trabajo claro y ordenado.</p>
+          <p>La información manejada es estrictamente confidencial y se entrega con la puntualidad que exigen los compromisos fiscales y laborales.</p>
+          <div class="sig">Javier</div>
+        </div>
+        <div>
+          <div class="sec-head" style="margin-bottom:26px;">
+            <div class="kicker">Nuestro Compromiso</div>
+            <div class="rule"></div>
+            <h2>Principios de trabajo</h2>
+          </div>
+          <ul class="values">
+            <li><span class="num">01</span><div><strong>Confidencialidad total</strong><span>Su información contable y financiera se maneja bajo reserva absoluta.</span></div></li>
+            <li><span class="num">02</span><div><strong>Cumplimiento y puntualidad</strong><span>Declaraciones y compromisos presentados dentro de los plazos establecidos.</span></div></li>
+            <li><span class="num">03</span><div><strong>Atención personalizada</strong><span>Cada caso se estudia de forma individual para ofrecer la solución adecuada.</span></div></li>
+            <li><span class="num">04</span><div><strong>Tarifas a convenir</strong><span>Sin precios fijos publicados: la tarifa se acuerda directamente con el contador según el alcance del servicio.</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">Contacto</div>
+        <div class="rule"></div>
+        <h2>Hablemos de su caso</h2>
+        <p>Comuníquese para coordinar una cita o solicitar información sobre cualquiera de nuestros servicios.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-box">
+          <div class="contact-item">
+            <div class="ic">T</div>
+            <div>
+              <div class="lab">Teléfono / WhatsApp</div>
+              <div class="val"><a href="tel:+584144576458">0414-4576458</a></div>
+              <div class="sub">Disponible también fuera del horario de oficina</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ic">U</div>
+            <div>
+              <div class="lab">Ubicación</div>
+              <div class="val">Maracay, Estado Aragua</div>
+              <div class="sub">Venezuela</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ic">A</div>
+            <div>
+              <div class="lab">Atención al cliente</div>
+              <div class="val">Presencial y a distancia</div>
+              <div class="sub">Citas coordinadas previamente</div>
+            </div>
+          </div>
+        </div>
+        <div class="hours-box">
+          <h3>Horario de atención</h3>
+          <div class="hours-row"><span class="d">Lunes a Viernes</span><span class="h">7:00 a.m. – 5:00 p.m.</span></div>
+          <div class="hours-row"><span class="d">Sábado</span><span class="h">7:00 a.m. – 5:00 p.m.</span></div>
+          <div class="hours-row closed"><span class="d">Domingo</span><span class="h">Cerrado</span></div>
+          <div class="hours-note">Atención telefónica disponible prácticamente a cualquier hora. Las consultas por teléfono pueden coordinarse fuera del horario de oficina.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div class="wrap">
+      <div>© <span id="year"></span> Javier — Contador Público Independiente · Maracay, Venezuela</div>
+      <div>Tarifas y honorarios a convenir directamente con el contador.</div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ================= PANEL ADMINISTRADOR ================= -->
+<div class="admin-view" id="adminView">
+  <div class="admin-top">
+    <div class="wrap">
+      <div class="who">Sesión iniciada como <strong>Javier</strong><span class="pill">Modo Administrador</span></div>
+      <div class="admin-actions">
+        <button class="btn btn-gold btn-sm" onclick="openServiceForm()">+ Nuevo servicio</button>
+        <button class="btn btn-ghost btn-sm" style="color:#fff;border-color:rgba(255,255,255,.5);" onclick="toSite()">Ver página pública</button>
+        <button class="btn btn-ghost btn-sm" style="color:#fff;border-color:rgba(255,255,255,.5);" onclick="logout()">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-body">
+    <div class="wrap">
+      <div class="admin-bar">
+        <div>
+          <h2>Administración de servicios</h2>
+          <p>Agregue, edite o elimine los servicios que se muestran en la página pública. Los cambios se guardan automáticamente.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-ghost btn-sm" onclick="restoreDefaults()">Restaurar servicios originales</button>
+        </div>
+      </div>
+      <div class="adm-list" id="adminList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL: LOGIN ================= -->
+<div class="overlay" id="loginOverlay">
+  <div class="modal">
+    <h3>Acceso del Contador</h3>
+    <p class="sub">Ingrese sus credenciales para administrar los servicios publicados.</p>
+    <div class="msg err" id="loginMsg"></div>
+    <div class="field">
+      <label for="user">Usuario</label>
+      <input type="text" id="user" autocomplete="username" placeholder="Ingrese su usuario">
+    </div>
+    <div class="field">
+      <label for="pass">Contraseña</label>
+      <input type="password" id="pass" autocomplete="current-password" placeholder="Ingrese su contraseña">
+    </div>
+    <div style="display:flex;gap:10px;margin-top:24px;">
+      <button class="btn btn-primary" style="flex:1;justify-content:center;" onclick="doLogin()">Ingresar</button>
+      <button class="btn btn-ghost" onclick="closeLogin()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL: SERVICIO ================= -->
+<div class="overlay" id="svcOverlay">
+  <div class="modal">
+    <h3 id="svcTitle">Nuevo servicio</h3>
+    <p class="sub">Complete los datos del servicio. Se mostrará en la página pública.</p>
+    <input type="hidden" id="svcId">
+    <div class="field">
+      <label for="svcName">Nombre del servicio</label>
+      <input type="text" id="svcName" placeholder="Ej: Declaración de ISLR">
+    </div>
+    <div class="field">
+      <label for="svcDesc">Descripción</label>
+      <textarea id="svcDesc" placeholder="Explique brevemente en qué consiste el servicio"></textarea>
+    </div>
+    <div class="field">
+      <label for="svcIcon">Símbolo (opcional)</label>
+      <input type="text" id="svcIcon" maxlength="3" placeholder="Ej: §" style="max-width:120px;">
+    </div>
+    <div style="display:flex;gap:10px;margin-top:24px;">
+      <button class="btn btn-primary" style="flex:1;justify-content:center;" onclick="saveService()">Guardar servicio</button>
+      <button class="btn btn-ghost" onclick="closeServiceForm()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN
+   ============================================================ */
+var CREDENTIALS = { user: 'javierc', pass: '2026' };
+var STORAGE_KEY = 'javier_servicios_v1';
+
+/* ============================================================
+   SERVICIOS POR DEFECTO
+   ============================================================ */
+var DEFAULT_SERVICES = [
+  { id: 's1', icon: '§', name: 'Contabilidad General', desc: 'Registro, clasificación y ordenamiento de todas las operaciones contables del negocio, con libros actualizados y estados financieros claros para la toma de decisiones.' },
+  { id: 's2', icon: '¶', name: 'Declaración de ISLR', desc: 'Preparación y presentación del Impuesto sobre la Renta, incluyendo el análisis de ingresos, costos, rebajas y desgravámenes aplicables según las normas vigentes.' },
+  { id: 's3', icon: '%', name: 'Impuesto al Valor Agregado (IVA)', desc: 'Control y presentación mensual del IVA, revisión de compras y ventas, retenciones y elaboración de las declaraciones correspondientes.' },
+  { id: 's4', icon: '☰', name: 'Nómina y Obligaciones Laborales', desc: 'Cálculo de nómina, prestaciones sociales, vacaciones, utilidades y demás obligaciones derivadas de la relación laboral conforme a la legislación vigente.' },
+  { id: 's5', icon: '¤', name: 'Estados Financieros', desc: 'Elaboración del balance general, estado de resultados y demás informes financieros necesarios para presentar ante bancos, socios o entes reguladores.' },
+  { id: 's6', icon: '⚖', name: 'Asesoría Fiscal y Tributaria', desc: 'Orientación permanente sobre el cumplimiento de las obligaciones tributarias nacionales y municipales, con el objetivo de evitar sanciones e intereses.' },
+  { id: 's7', icon: '◎', name: 'Constitución de Empresas', desc: 'Acompañamiento en la creación legal de la empresa, trámites de registro, adecuación contable inicial y puesta en marcha del sistema de registro.' },
+  { id: 's8', icon: '⚙', name: 'Auditoría y Revisión', desc: 'Revisión independiente de la información contable para verificar su razonabilidad, detectar observaciones y proponer correctivos oportunos.' },
+  { id: 's9', icon: '⌂', name: 'Registro de Compras y Ventas', desc: 'Mantenimiento de los libros de compras y ventas exigidos por la administración tributaria, con controles de retención y archivo ordenado.' }
+];
+
+var PRICE_NOTE = 'Tarifa a convenir con el contador';
+
+/* ============================================================
+   ESTADO Y ALMACENAMIENTO
+   ============================================================ */
+var services = [];
+
+function loadServices(){
+  var raw = null;
+  try { raw = localStorage.getItem(STORAGE_KEY); } catch(e){ raw = null; }
+  if(raw){
+    try{
+      var parsed = JSON.parse(raw);
+      if(Object.prototype.toString.call(parsed) === '[object Array]'){
+        services = parsed;
+        return;
+      }
+    }catch(e){ /* datos corruptos: se restauran por defecto */ }
+  }
+  services = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
+  saveServices(true);
+}
+
+function saveServices(silent){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(services));
+  }catch(e){
+    if(!silent){ toast('No se pudieron guardar los cambios en este navegador.'); }
+  }
+}
+
+/* ============================================================
+   RENDER: PÁGINA PÚBLICA
+   ============================================================ */
+function escapeHtml(str){
+  return String(str === undefined || str === null ? '' : str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function renderPublic(){
+  var grid = document.getElementById('servicesGrid');
+  if(!services.length){
+    grid.innerHTML = '<div class="empty-state"><h4>Servicios en actualización</h4><p>Contáctenos para conocer los servicios disponibles actualmente.</p></div>';
+    return;
+  }
+  var html = '';
+  for(var i=0;i<services.length;i++){
+    var s = services[i];
+    html += '<article class="svc">';
+    html += '<div class="icon">' + escapeHtml(s.icon || '§') + '</div>';
+    html += '<h3>' + escapeHtml(s.name) + '</h3>';
+    html += '<p>' + escapeHtml(s.desc) + '</p>';
+    html += '<div class="note">' + escapeHtml(PRICE_NOTE) + '</div>';
+    html += '</article>';
+  }
+  grid.innerHTML = html;
+}
+
+/* ============================================================
+   RENDER: PANEL ADMINISTRADOR
+   ============================================================ */
+function renderAdmin(){
+  var list = document.getElementById('adminList');
+  if(!services.length){
+    list.innerHTML = '<div class="empty-state"><h4>No hay servicios registrados</h4><p>Use el botón «Nuevo servicio» para agregar el primero.</p></div>';
+    return;
+  }
+  var html = '';
+  for(var i=0;i<services.length;i++){
+    var s = services[i];
+    html += '<div class="adm-item">';
+    html += '  <div class="info">';
+    html += '    <h4>' + escapeHtml(s.name) + '</h4>';
+    html += '    <p>' + escapeHtml(s.desc) + '</p>';
+    html += '    <div class="meta">' + escapeHtml(PRICE_NOTE) + '</div>';
+    html += '  </div>';
+    html += '  <div class="ctrl">';
+    html += '    <button class="btn btn-primary btn-sm" onclick="editService(\'' + s.id + '\')">Editar</button>';
+    html += '    <button class="btn btn-danger btn-sm" onclick="deleteService(\'' + s.id + '\')">Eliminar</button>';
+    html += '  </div>';
+    html += '</div>';
+  }
+  list.innerHTML = html;
+}
+
+function renderAll(){ renderPublic(); renderAdmin(); }
+
+/* ============================================================
+   ACCESO DEL CONTADOR
+   ============================================================ */
+function openLogin(){
+  document.getElementById('loginMsg').className = 'msg err';
+  document.getElementById('loginMsg').textContent = '';
+  document.getElementById('user').value = '';
+  document.getElementById('pass').value = '';
+  document.getElementById('loginOverlay').classList.add('open');
+  setTimeout(function(){ document.getElementById('user').focus(); }, 80);
+}
+function closeLogin(){ document.getElementById('loginOverlay').classList.remove('open'); }
+
+function doLogin(){
+  var u = document.getElementById('user').value.trim();
+  var p = document.getElementById('pass').value;
+  var msg = document.getElementById('loginMsg');
+  if(u === CREDENTIALS.user && p === CREDENTIALS.pass){
+    closeLogin();
+    document.getElementById('siteView').classList.add('hidden');
+    document.getElementById('adminView').classList.add('active');
+    renderAdmin();
+    window.scrollTo(0,0);
+    toast('Bienvenido, Javier. Modo administrador activado.');
+  } else {
+    msg.className = 'msg err';
+    msg.textContent = 'Usuario o contraseña incorrectos.';
+  }
+}
+
+function logout(){
+  document.getElementById('adminView').classList.remove('active');
+  document.getElementById('siteView').classList.remove('hidden');
+  renderPublic();
+  window.scrollTo(0,0);
+  toast('Sesión cerrada.');
+}
+
+function toSite(){
+  document.getElementById('adminView').classList.remove('active');
+  document.getElementById('siteView').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+
+/* ============================================================
+   CRUD DE SERVICIOS
+   ============================================================ */
+function openServiceForm(){
+  document.getElementById('svcTitle').textContent = 'Nuevo servicio';
+  document.getElementById('svcId').value = '';
+  document.getElementById('svcName').value = '';
+  document.getElementById('svcDesc').value = '';
+  document.getElementById('svcIcon').value = '';
+  document.getElementById('svcOverlay').classList.add('open');
+  setTimeout(function(){ document.getElementById('svcName').focus(); }, 80);
+}
+
+function editService(id){
+  var s = findService(id);
+  if(!s) return;
+  document.getElementById('svcTitle').textContent = 'Editar servicio';
+  document.getElementById('svcId').value = s.id;
+  document.getElementById('svcName').value = s.name;
+  document.getElementById('svcDesc').value = s.desc;
+  document.getElementById('svcIcon').value = s.icon || '';
+  document.getElementById('svcOverlay').classList.add('open');
+  setTimeout(function(){ document.getElementById('svcName').focus(); }, 80);
+}
+
+function closeServiceForm(){ document.getElementById('svcOverlay').classList.remove('open'); }
+
+function findService(id){
+  for(var i=0;i<services.length;i++){ if(services[i].id === id) return services[i]; }
+  return null;
+}
+
+function newId(){ return 's' + Date.now() + Math.floor(Math.random()*1000); }
+
+function saveService(){
+  var id = document.getElementById('svcId').value;
+  var name = document.getElementById('svcName').value.trim();
+  var desc = document.getElementById('svcDesc').value.trim();
+  var icon = document.getElementById('svcIcon').value.trim();
+  if(!name){ toast('Debe indicar el nombre del servicio.'); return; }
+  if(!desc){ toast('Debe indicar una descripción del servicio.'); return; }
+  if(id){
+    var s = findService(id);
+    if(s){ s.name = name; s.desc = desc; s.icon = icon || '§'; }
+    toast('Servicio actualizado correctamente.');
+  } else {
+    services.push({ id: newId(), icon: icon || '§', name: name, desc: desc });
+    toast('Servicio agregado correctamente.');
+  }
+  saveServices();
+  closeServiceForm();
+  renderAll();
+}
+
+function deleteService(id){
+  var s = findService(id);
+  if(!s) return;
+  if(!confirm('¿Eliminar el servicio "' + s.name + '"? Esta acción no se puede deshacer.')) return;
+  var out = [];
+  for(var i=0;i<services.length;i++){ if(services[i].id !== id) out.push(services[i]); }
+  services = out;
+  saveServices();
+  renderAll();
+  toast('Servicio eliminado.');
+}
+
+function restoreDefaults(){
+  if(!confirm('¿Restaurar la lista original de servicios? Se perderán los cambios realizados.')) return;
+  services = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
+  saveServices();
+  renderAll();
+  toast('Se restauraron los servicios originales.');
+}
+
+/* ============================================================
+   AVISOS EN PANTALLA
+   ============================================================ */
+var toastTimer = null;
+function toast(text){
+  var t = document.getElementById('toast');
+  t.textContent = text;
+  t.classList.add('show');
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3200);
+}
+
+/* ============================================================
+   INICIALIZACIÓN
+   ============================================================ */
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ closeLogin(); closeServiceForm(); }
+  if(e.key === 'Enter' && document.getElementById('loginOverlay').classList.contains('open')){ doLogin(); }
+});
+
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'loginOverlay') closeLogin();
+  if(e.target && e.target.id === 'svcOverlay') closeServiceForm();
+});
+
+(function init(){
+  document.getElementById('year').textContent = new Date().getFullYear();
+  loadServices();
+  renderAll();
+})();
+</script>
+</body>
+</html>
